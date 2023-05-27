@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import HeaderLink from "./HeaderLink"
 
-export default function HeaderLinksBox({ windowScroll, windowHeight }) {
+export default function HeaderLinksBox({ windowScroll, aboutMeHeight, workHeight }) {
     const [selected, setSelected] = useState(0)
 
     const boxStyle = {
@@ -10,14 +10,13 @@ export default function HeaderLinksBox({ windowScroll, windowHeight }) {
     }
 
     useEffect(() => {
-        windowScroll < windowHeight ?
-            setSelected(0) : windowHeight > 1073 ?
-                windowScroll < windowHeight * 2 ? setSelected(1) : setSelected(2)
-                : windowScroll < windowHeight + 1073 ? setSelected(1) : setSelected(2);
-    }, [windowScroll, windowHeight])
+        windowScroll < aboutMeHeight * 0.6 ? setSelected(0) :
+                windowScroll < aboutMeHeight + workHeight * 0.6 ? setSelected(1) : setSelected(2);
+    }, [windowScroll, aboutMeHeight, workHeight])
 
     useEffect(() => {
         console.log(selected)
+        console.log(windowScroll)
     }, [selected])
 
     return (

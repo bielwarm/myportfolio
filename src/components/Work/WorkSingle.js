@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Modal from "./Modal";
+import Modal from "../Common/Modal";
 
-export default function WorkSingle({ left, imgSrc, title, paragraph, description, url, tags }) {
+export default function WorkSingle({ left, imgSrc, title, paragraph, description, url, tags, windowHeight, windowWidth }) {
     const [transition, setTransition] = useState(false);
-    const [mouseLocation, setMouseLocation] = useState({x: 0, y: 0})
+    const [mouseLocation, setMouseLocation] = useState({ x: 0, y: 0 })
     const [clicked, setClicked] = useState(false);
     const [open, setOpen] = useState(false);
     const [expand, setExpand] = useState(false);
@@ -22,7 +22,7 @@ export default function WorkSingle({ left, imgSrc, title, paragraph, description
 
     useEffect(() => {
         open ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'unset';
-    
+
         const timeout = setTimeout(() => {
             open ? setTransition(true) : setTransition(false);
         }, 10);
@@ -83,7 +83,7 @@ export default function WorkSingle({ left, imgSrc, title, paragraph, description
             zIndex: "9",
             width: "100vw",
             height: "100vh",
-            transition : "background-color 0.5s",
+            transition: "background-color 0.5s",
         }}>
 
             <div style={{
@@ -95,34 +95,29 @@ export default function WorkSingle({ left, imgSrc, title, paragraph, description
                 transition: "width 1s, height 1s, top 1s, left 1s",
             }}>
 
-                <Modal 
-                transition={transition}
-                setClicked={setClicked} 
-                mouseLocation={mouseLocation} 
-                imgSrc={imgSrc}
-                title={title}
-                description={description}
-                url={url}
-                tags={tags} 
+                <Modal
+                    transition={transition}
+                    setClicked={setClicked}
+                    mouseLocation={mouseLocation}
+                    imgSrc={imgSrc}
+                    title={title}
+                    description={description}
+                    url={url}
+                    tags={tags}
+                    windowHeight={windowHeight}
+                    windowWidth={windowWidth}
                 />
             </div>
         </div>
     )
 
-    return (left ?
+    return (
         <div style={styleMainBox}>
+            {!left && text}
             <div style={{ width: "210px" }}>
                 {image}
             </div>
-            {text}
-            {open && openedBox}
-        </div>
-        :
-        <div style={styleMainBox}>
-            {text}
-            <div style={{ width: "210px" }}>
-                {image}
-            </div>
+            {left && text}
             {open && openedBox}
         </div>
     )

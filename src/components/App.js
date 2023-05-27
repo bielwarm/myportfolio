@@ -1,29 +1,36 @@
 import { useEffect, useState } from 'react';
 import '../App.css';
 import AboutMe from './AboutMe';
-import HeaderLinks from './header/HeaderLinksBox';
-import Work from './Work';
+import HeaderLinks from './Header/HeaderLinksBox';
+import Work from './Work/Work';
 
 function App() {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [windowScroll, setWindowScroll] = useState(window.scrollY);
+  const [aboutMeHeight, setAboutMeHeight] = useState(0);
+  const [workHeight, setWorkHeight] = useState(0);
+  const [contactHeight, setContactHeight] = useState(0);
 
   useEffect(() => {
-    const testScroll = () => setWindowScroll(window.scrollY);
-    const testHeight = () => setWindowHeight(window.innerHeight);
+    const ScrollListener = () => setWindowScroll(window.scrollY);
+    const HeightListener = () => setWindowHeight(window.innerHeight);
+    const WidthListener = () => setWindowWidth(window.innerWidth);
 
-    window.addEventListener("scroll", testScroll);
-    window.addEventListener("resize", testHeight);
+    window.addEventListener("scroll", ScrollListener);
+    window.addEventListener("resize", HeightListener);
+    window.addEventListener("resize", WidthListener);
 
     return () => {
-      window.removeEventListener("scroll", testScroll);
-      window.removeEventListener("resize", testHeight)
+      window.removeEventListener("scroll", ScrollListener);
+      window.removeEventListener("resize", HeightListener)
+      window.removeEventListener("resize", WidthListener)
     };
   }, []);
 
-  useEffect(() => {
-    console.log("window height", windowHeight)
-  }, [windowHeight])
+  // useEffect(() => {
+  //   console.log("window height", windowHeight)
+  // }, [windowHeight])
 
   return (
     <div className="App">
@@ -32,22 +39,18 @@ function App() {
         <div className='font-montserrat' style={{ fontSize: "32px", borderTop: "0.5px solid white", borderBottom: "0.5px solid white" }}>
           <span style={{ letterSpacing: "1px" }}>G_W<span style={{ fontSize: "0.55em", letterSpacing: "2px" }}>.dev</span></span>
         </div>
-        <HeaderLinks windowScroll={windowScroll} windowHeight={windowHeight} />
+        <HeaderLinks windowScroll={windowScroll} aboutMeHeight={aboutMeHeight} workHeight={workHeight} />
       </div>
 
       <div className="main">
-        <div id="about-me" style={{ height: windowHeight }}>
-          <div style={{ paddingTop: "12rem" }}>
-            <AboutMe />
-          </div>
+        <div id="about-me">
+          <AboutMe setHeight={setAboutMeHeight} />
         </div>
-        {/* Work section total height is 983px (+ padding = 1073px ) */}
-        <div id="work" style={{ paddingTop: "90px", minHeight: "983px", height: windowHeight }}>
-          <h2 style={{ margin: '0 0 40px', fontSize: "3rem" }}>Work</h2>
-          <Work />
+        <div id="work">
+          <Work setHeight={setWorkHeight} windowHeight={windowHeight} windowWidth={windowWidth} />
         </div>
 
-        <div id="contact" style={{ paddingTop: "90px", height: windowHeight }}>
+        <div id="contact" style={{ paddingTop: "6rem", height: windowHeight * 0.7 }}>
           <h2 style={{ margin: '0 0 40px', fontSize: "3rem" }}>Contact</h2>
           <form>
             <label htmlFor="title">Subject:</label><br />

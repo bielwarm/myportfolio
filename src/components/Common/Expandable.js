@@ -7,7 +7,7 @@ export default function Expandable({ children, open, setOpen }) {
 
     useEffect(() => {
         setHeight(checkHeightRef.current.clientHeight)
-    })
+    }, [])
 
     // #13131b
     const expandedStyle = {
@@ -38,7 +38,7 @@ export default function Expandable({ children, open, setOpen }) {
                 }}
                 onClick={() => setOpen(!open)}
             >
-                Expand<img style={{ position: "relative", left: "4px", top: "3px", color: '#DADADA', transform: open ? "scale(1.8) rotate(0.5turn) translate(0, -1px)" : "scale(1.8)", filter: hover ? 'invert(20%)': '' }} src="/down-arrow.svg" />
+                Expand<img alt="" style={{ position: "relative", left: "4px", top: "3px", color: '#DADADA', transform: open ? "scale(1.8) rotate(0.5turn) translate(0, -1px)" : "scale(1.8)", filter: hover ? 'invert(20%)': '' }} src="/down-arrow.svg" />
             </div>
             <div style={expandedStyle}>
                 <div ref={checkHeightRef} style={{ padding: "0.5rem 0" }}>

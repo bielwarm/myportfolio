@@ -16,7 +16,7 @@ export default function AboutMe({ setHeight }) {
 
             return () => clearTimeout(timeoutId)
         }
-    }, [mainHeightRef, open])
+    }, [mainHeightRef, open, setHeight])
 
     // useEffect(() => {
     //     if (expandableHeightRef.current) {
@@ -91,14 +91,14 @@ export default function AboutMe({ setHeight }) {
             <div style={bodyStyle}>
                 <div>
                     This website is not just a digital platform; it's a showcase of my skills, commitment, and passion for technology and coding.
-                    My proficiency in <span style={codeStyle}>Python</span>, <span style={codeStyle}>JavaScript</span>, and <span style={codeStyle}>cloud technologies</span> are extensively applied throughout the diverse and robust software solutions featured here.
+                    My proficiency in <span style={codeStyle}>Python</span>, <span style={codeStyle}>JavaScript</span>, <span style={codeStyle}>Rust</span>, and <span style={codeStyle}>cloud technologies</span> are extensively applied throughout the diverse and robust software solutions featured here.
                     Each project demonstrates my hands-on experience and continual pursuit for excellence in development.
                 </div>
                 <div> For those of you interested in knowing a bit more about the person behind the code, feel free to delve deeper by clicking the button below. You'll uncover a bit of my personal world beyond the realms of development.</div>
             </div>
             <Expandable open={open} setOpen={setOpen}>
                 <div style={{ display: "flex", justifyContent: "center", padding: "1rem 0" }} ref={expandableHeightRef}>
-                    <img width="180px" src="/profile-img.jpeg" style={{ borderRadius: "10px", boxShadow: "3px 3px 3px #060609 " }} />
+                    <img alt="" width="180px" src="/profile-img.jpeg" style={{ borderRadius: "10px", boxShadow: "3px 3px 3px #060609 " }} />
                     <div style={descStyle}>
                         <Typewriter open={open} textToType={textToType} />
                     </div>

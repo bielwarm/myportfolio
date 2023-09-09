@@ -2,11 +2,14 @@ import { useEffect, useRef, useState } from "react"
 import useClickOutside from "../../hooks/useClickOutside"
 import Typewriter from "./Typewriter";
 
-export default function Modal({ setClicked, imgSrc, title, description, url, tags, transition, windowHeight, windowWidth }) {
+export default function Modal({ setClicked, imgSrc, title, description, url, responsibilities, tags, transition, windowHeight, windowWidth }) {
 
     const ref = useRef()
     const heightRef = useRef(null)
+    const bottomRef = useRef(null)
     const [imgHeight, setImgHeight] = useState(null)
+    const [contentLength, setContentLength] = useState(null)
+    const [skipTypewriter, setSkipTypewriter] = useState(false);
 
     useClickOutside(ref, () => setClicked(false))
 
@@ -26,19 +29,28 @@ export default function Modal({ setClicked, imgSrc, title, description, url, tag
         if (heightRef.current) {
             setImgHeight(heightRef.current.offsetHeight)
         }
-        console.log(heightRef?.current?.offsetHeight)
     }, [heightRef, heightRef?.current?.offsetHeight, windowHeight, windowWidth])
+
+    useEffect(() => {
+        if (contentLength > 0) {
+            bottomRef.current?.scrollIntoView()
+        }
+    }, [contentLength])
 
     const textToType = url ? [
         `Title: ${title}`,
         " ",
         `Description: ${description}`,
         " ",
-        url
+        url,
+        " ",
+        `Responsibilities: ${responsibilities}`
     ] : [
         `Title: ${title}`,
         " ",
-        `Description: ${description}`
+        `Description: ${description}`,
+        " ",
+        `Responsibilities: ${responsibilities}`
     ]
 
     return (
@@ -53,6 +65,7 @@ export default function Modal({ setClicked, imgSrc, title, description, url, tag
             maxHeight: "80vm"
         }}>
             <img
+                alt=""
                 ref={heightRef}
                 width="70%"
                 src={imgSrc}
@@ -64,7 +77,7 @@ export default function Modal({ setClicked, imgSrc, title, description, url, tag
                     transition: "box-shadow 1s"
                 }}
             />
-            <div style={{ width: transition ? "30%" : "0", height: imgHeight , transition: "width 1s", backgroundColor: "#16161f", overflow: "hidden", margin: 'auto', maxHeight: imgHeight }}>
+            <div style={{ width: transition ? "30%" : "0", height: imgHeight, transition: "width 1s", backgroundColor: "#16161f", overflowY: "auto", overflowX: "hidden", margin: 'auto', maxHeight: imgHeight }}>
                 <div style={{
                     display: "flex",
                     flexDirection: "column",
@@ -73,9 +86,11 @@ export default function Modal({ setClicked, imgSrc, title, description, url, tag
                     fontSize: transition ? "1rem" : "0",
                     transition: "font-size 1s"
                 }}>
-                    <Typewriter open={transition} textToType={textToType} work={true} tags={tags} />
+                    <Typewriter open={transition} textToType={textToType} work={true} tags={tags} url={url ? true : false} setContentLength={setContentLength} skipTypewriter={skipTypewriter} />
                 </div>
+                <div ref={bottomRef} />
             </div>
+            <div style={{ position: 'absolute', bottom: -25, right: 5, textDecoration: "underline", cursor: 'pointer', fontSize: transition ? '1rem' : "0", transition: "font-size 1s" }} onClick={() => setSkipTypewriter(true)}>Skip</div>
         </div>
     )
 } 

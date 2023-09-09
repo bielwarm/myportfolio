@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Modal from "../Common/Modal";
 
-export default function WorkSingle({ left, imgSrc, title, paragraph, description, url, tags, windowHeight, windowWidth }) {
+export default function WorkSingle({ left, imgSrc, title, shortDesc, description, url, responsibilities, tags, windowHeight, windowWidth }) {
     const [transition, setTransition] = useState(false);
     const [mouseLocation, setMouseLocation] = useState({ x: 0, y: 0 })
     const [clicked, setClicked] = useState(false);
@@ -56,9 +56,9 @@ export default function WorkSingle({ left, imgSrc, title, paragraph, description
             onMouseOut={() => setExpand(false)}
             onClick={(e) => { setClicked(true); setMouseLocation({ x: e.clientX, y: e.clientY }) }}
             style={styleImageBox}>
-            <img height="210px" width="280px" style={{ transform: `translate(${expand ? 0 : "-35px"})`, transition: "transform 0.5s" }} src={imgSrc} />
-            <div style={{ position: "absolute", width: "100%", fontSize: "1.3rem", textDecoration: "underline", color: "#e1e1e1" }}>
-                Show More
+            <img height="210px" alt="" width="280px" style={{ transform: `translate(${expand ? 0 : "-35px"})`, transition: "transform 0.5s" }} src={imgSrc} />
+            <div style={{ display: "flex", alignItems: 'center', justifyContent: 'center', bottom: 8, position: "absolute", width: "100%", fontSize: "1.1rem", color: "#e1e1e1" }}>
+                <img alt="" src="/magnifier.svg" />
             </div>
         </div>
     )
@@ -69,7 +69,7 @@ export default function WorkSingle({ left, imgSrc, title, paragraph, description
                 {title}
             </h3>
             <div style={{ textAlign: left ? "left" : "right" }}>
-                {paragraph}
+                {shortDesc}
             </div>
         </div>
     )
@@ -103,6 +103,7 @@ export default function WorkSingle({ left, imgSrc, title, paragraph, description
                     title={title}
                     description={description}
                     url={url}
+                    responsibilities={responsibilities}
                     tags={tags}
                     windowHeight={windowHeight}
                     windowWidth={windowWidth}

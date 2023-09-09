@@ -3,6 +3,7 @@ import '../App.css';
 import AboutMe from './AboutMe';
 import HeaderLinks from './Header/HeaderLinksBox';
 import Work from './Work/Work';
+import ContactForm from './Contact/ContactForm';
 
 function App() {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
@@ -10,7 +11,7 @@ function App() {
   const [windowScroll, setWindowScroll] = useState(window.scrollY);
   const [aboutMeHeight, setAboutMeHeight] = useState(0);
   const [workHeight, setWorkHeight] = useState(0);
-  const [contactHeight, setContactHeight] = useState(0);
+  // const [contactHeight, setContactHeight] = useState(0);
 
   useEffect(() => {
     const ScrollListener = () => setWindowScroll(window.scrollY);
@@ -50,17 +51,7 @@ function App() {
           <Work setHeight={setWorkHeight} windowHeight={windowHeight} windowWidth={windowWidth} />
         </div>
 
-        <div id="contact" style={{ paddingTop: "6rem", height: windowHeight * 0.7 }}>
-          <h2 style={{ margin: '0 0 40px', fontSize: "3rem" }}>Contact</h2>
-          <form>
-            <label htmlFor="title">Subject:</label><br />
-            <input id="title" type="text" style={{ marginBottom: '30px' }} /><br />
-            <label htmlFor="message">Message:</label><br />
-            <textarea id="message" style={{ width: '300px', height: '80px', marginBottom: '30px' }} /><br />
-            <label htmlFor="return-email">Email Address:</label><br />
-            <input id="return-email" type="text" />
-          </form>
-        </div>
+        <ContactForm windowHeight={windowHeight} />
       </div>
     </div>
   );

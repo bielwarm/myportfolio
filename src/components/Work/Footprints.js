@@ -14,22 +14,26 @@ export default function Footprints({delay}) {
 
     const styleOne = {
         transform: transformRight,
-        animationDelay: delay ? "3s" : 0,
+        animationDelay: delay ? `${delay * 3}s` : 0,
+        animationDuration: '9s',
         opacity
     }
     const styleTwo = {
         transform: transformLeft,
-        animationDelay: delay ? "3.75s" : "0.75s",
+        animationDelay: delay ? `${delay * 3}.75s` : "0.75s",
+        animationDuration: '9s',
         opacity
     }
     const styleThree = {
         transform: transformRight,
-        animationDelay: delay ? "4.5s" : "1.5s",
+        animationDelay: delay ? `${(delay * 3) + 1}.5s` : "1.5s",
+        animationDuration: '9s',
         opacity
     }
     const styleFour = {
         transform: transformLeft,
-        animationDelay: delay ? "5.25s" : "2.25s",
+        animationDelay: delay ? `${(delay * 3) + 2}.25s` : "2.25s",
+        animationDuration: '9s',
         opacity
     }
 

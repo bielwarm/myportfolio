@@ -14,11 +14,6 @@ export default function HeaderLinksBox({ windowScroll, aboutMeHeight, workHeight
                 windowScroll < aboutMeHeight + workHeight * 0.6 ? setSelected(1) : setSelected(2);
     }, [windowScroll, aboutMeHeight, workHeight])
 
-    useEffect(() => {
-        console.log(selected)
-        console.log(windowScroll)
-    }, [selected])
-
     return (
         <div style={boxStyle}>
             <HeaderLink link="#about-me" content="About Me" selected={selected === 0 ? "#74f6ff" : "white"} />

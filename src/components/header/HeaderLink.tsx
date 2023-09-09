@@ -1,4 +1,6 @@
-export default function HeaderLink({ link, content, selected }) {
+import React from 'react';
+
+export default function HeaderLink({ link, content, selected }: {link: string, content: string, selected: string}) {
 
     return (
         <a

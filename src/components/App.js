@@ -40,16 +40,16 @@ function App() {
   return (
     <div className="App">
 
-      <div className="header">
+      <div className="header" style={windowWidth <= 768 ? {paddingLeft: '20px', paddingRight: '20px'} : {}}>
         <div className='font-montserrat' style={{ ...headerStyle, borderTop: "0.5px solid white", borderBottom: "0.5px solid white" }}>
           G_W<span style={subHeaderStyle}>.dev</span>
         </div>
-        <HeaderLinks windowScroll={windowScroll} aboutMeHeight={aboutMeHeight} workHeight={workHeight} />
+        <HeaderLinks windowScroll={windowScroll} aboutMeHeight={aboutMeHeight} workHeight={workHeight} windowWidth={windowWidth} />
       </div>
 
       <div className="main">
         <div id="about-me">
-          <AboutMe setHeight={setAboutMeHeight} />
+          <AboutMe setHeight={setAboutMeHeight} windowWidth={windowWidth} />
         </div>
         <div id="work">
           <Work setHeight={setWorkHeight} windowHeight={windowHeight} windowWidth={windowWidth} />

@@ -1,13 +1,20 @@
 import { useEffect, useReducer, useState, useCallback } from "react";
 import Tag from "./Tag";
 
-export default function Typewriter({ open, textToType, work, tags, url, setContentLength, skipTypewriter }) {
+export default function Typewriter({ open, textToType, work, tags, url, setContentLength, skipTypewriter, }) {
 
     const [startTypewriter, setStartTypewriter] = useState(false);
 
     const handleTimeout = useCallback((start, delay) => {
         const timeout = setTimeout(() => {
             setStartTypewriter(start);
+            if (!start) {
+                // Reset the typewriter state here
+                setI(0);
+                textToType.forEach((_, index) => {
+                    dispatch({ type: index, payload: "" });
+                });
+            }
         }, delay);
         return () => clearTimeout(timeout);
     }, []);

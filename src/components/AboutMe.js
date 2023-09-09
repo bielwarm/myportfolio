@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from "react"
 import Expandable from "./Common/Expandable.js"
 import Typewriter from "./Common/Typewriter";
 
-export default function AboutMe({ setHeight }) {
+export default function AboutMe({ setHeight, windowWidth }) {
     const [open, setOpen] = useState(false);
+    const [contentLength, setContentLength] = useState(0);
     const mainHeightRef = useRef(null);
     const expandableHeightRef = useRef(null);
 
@@ -96,11 +97,13 @@ export default function AboutMe({ setHeight }) {
                 </div>
                 <div> For those of you interested in knowing a bit more about the person behind the code, feel free to delve deeper by clicking the button below. You'll uncover a bit of my personal world beyond the realms of development.</div>
             </div>
-            <Expandable open={open} setOpen={setOpen}>
+            <Expandable open={open} setOpen={setOpen} contentLength={contentLength}>
                 <div style={{ display: "flex", justifyContent: "center", padding: "1rem 0" }} ref={expandableHeightRef}>
-                    <img alt="" width="180px" src="/profile-img.jpeg" style={{ borderRadius: "10px", boxShadow: "3px 3px 3px #060609 " }} />
+                    <div>
+                        <img alt="" width="180px" src="/profile-img.jpeg" style={{ borderRadius: "10px", boxShadow: "3px 3px 3px #060609 " }} />
+                    </div>
                     <div style={descStyle}>
-                        <Typewriter open={open} textToType={textToType} />
+                        <Typewriter open={open} textToType={textToType} setContentLength={setContentLength} />
                     </div>
                 </div>
             </Expandable>

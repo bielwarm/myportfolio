@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 
-export default function Expandable({ children, open, setOpen }) {
+export default function Expandable({ children, open, setOpen, contentLength }) {
     const [height, setHeight] = useState(0)
     const [hover, setHover] = useState(false)
     const checkHeightRef = useRef(null)
 
     useEffect(() => {
         setHeight(checkHeightRef.current.clientHeight)
-    }, [checkHeightRef, children])
+    }, [checkHeightRef, children, contentLength])
 
     // #13131b
     const expandedStyle = {

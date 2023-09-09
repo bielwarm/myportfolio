@@ -42,6 +42,7 @@ export default function WorkSingle({ left, imgSrc, title, shortDesc, description
         alignItems: isSmalScreen ? 'center' : "",
         justifyContent: isSmalScreen ? 'center' : "",
     } : {}
+
     const styleMainBox = {
         display: "flex",
         width: isSmalScreen ? windowWidth : "680px",
@@ -75,11 +76,11 @@ export default function WorkSingle({ left, imgSrc, title, shortDesc, description
     )
 
     const text = (
-        <div style={{ width: "400px" }}>
+        <div style={{ width: isSmalScreen ? windowWidth * 0.85 : "400px" }}>
             <h3>
                 {title}
             </h3>
-            <div style={{ textAlign: left ? "left" : "right" }}>
+            <div style={{ textAlign: isSmalScreen ? "center" : left ? "left" : "right"  }}>
                 {shortDesc}
             </div>
         </div>

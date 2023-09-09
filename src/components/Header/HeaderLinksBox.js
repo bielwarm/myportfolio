@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import HeaderLink from "./HeaderLink"
 
-export default function HeaderLinksBox({ windowScroll, aboutMeHeight, workHeight }) {
+export default function HeaderLinksBox({ windowScroll, aboutMeHeight, workHeight, windowWidth }) {
     const [selected, setSelected] = useState(0)
 
     const boxStyle = {
         display: "flex",
-        gap: "2rem",
+        gap: windowWidth <= 768 ? "1.5rem" : "2rem",
     }
 
     useEffect(() => {

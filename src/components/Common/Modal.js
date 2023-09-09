@@ -62,12 +62,13 @@ export default function Modal({ setClicked, imgSrc, title, description, url, res
             display: "flex",
             gap: "1.5rem",
             width: "80%",
-            maxHeight: "80vm"
+            maxHeight: "80vm",
+            flexDirection: windowWidth <= 768 ? "column" : "row",
         }}>
             <img
                 alt=""
                 ref={heightRef}
-                width="70%"
+                width= {windowWidth <= 768 ? "95%" : "70%"}
                 src={imgSrc}
                 style={{
                     maxHeight: "80vm",
@@ -77,7 +78,7 @@ export default function Modal({ setClicked, imgSrc, title, description, url, res
                     transition: "box-shadow 1s"
                 }}
             />
-            <div style={{ width: transition ? "30%" : "0", height: imgHeight, transition: "width 1s", backgroundColor: "#16161f", overflowY: "auto", overflowX: "hidden", margin: 'auto', maxHeight: imgHeight }}>
+            <div style={{ width: transition ? windowWidth <= 768 ? "80%" : "30%" : "0", height: windowWidth <= 768 ? imgHeight * 1.8 : imgHeight, transition: "width 1s", backgroundColor: "#16161f", overflowY: "auto", overflowX: "hidden", margin: 'auto', maxHeight: windowWidth <= 768 ? imgHeight * 1.8 : imgHeight }}>
                 <div style={{
                     display: "flex",
                     flexDirection: "column",

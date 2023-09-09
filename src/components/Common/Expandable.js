@@ -19,10 +19,6 @@ export default function Expandable({ children, open, setOpen }) {
         boxShadow: "-5px 3px 5px #060609 inset",
     }
 
-    useEffect(() => {
-        console.log(height)
-    }, [height])
-
     return (
         <div>
             <div

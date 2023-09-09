@@ -7,7 +7,7 @@ export default function Expandable({ children, open, setOpen }) {
 
     useEffect(() => {
         setHeight(checkHeightRef.current.clientHeight)
-    }, [])
+    }, [checkHeightRef])
 
     // #13131b
     const expandedStyle = {
@@ -18,6 +18,10 @@ export default function Expandable({ children, open, setOpen }) {
         // border: "1px solid #13131b",
         boxShadow: "-5px 3px 5px #060609 inset",
     }
+
+    useEffect(() => {
+        console.log(height)
+    }, [height])
 
     return (
         <div>

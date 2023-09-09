@@ -31,7 +31,7 @@ export default function Footer() {
 
     return (
         <div style={footerStyle}><a
-                href="www.linkedin.com/in/gabriel-warmling-19197b217"
+                href="https://www.linkedin.com/in/gabriel-warmling-19197b217"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={linkStyle}

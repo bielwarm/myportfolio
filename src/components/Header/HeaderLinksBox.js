@@ -16,9 +16,9 @@ export default function HeaderLinksBox({ windowScroll, aboutMeHeight, workHeight
 
     return (
         <div style={boxStyle}>
-            <HeaderLink link="#about-me" content="About Me" selected={selected === 0 ? "#74f6ff" : "white"} />
-            <HeaderLink link="#work" content="Work" selected={selected === 1 ? "#74f6ff" : "white"} />
-            <HeaderLink link="#contact" content="Contact" selected={selected === 2 ? "#74f6ff" : "white"} />
+            <HeaderLink link="about-me" content="About Me" selected={selected === 0 ? "#74f6ff" : "white"} />
+            <HeaderLink link="work" content="Work" selected={selected === 1 ? "#74f6ff" : "white"} />
+            <HeaderLink link="contact" content="Contact" selected={selected === 2 ? "#74f6ff" : "white"} />
         </div>
     )
 }

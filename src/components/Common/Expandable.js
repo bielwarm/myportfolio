@@ -7,7 +7,7 @@ export default function Expandable({ children, open, setOpen }) {
 
     useEffect(() => {
         setHeight(checkHeightRef.current.clientHeight)
-    }, [checkHeightRef])
+    }, [checkHeightRef, children])
 
     // #13131b
     const expandedStyle = {

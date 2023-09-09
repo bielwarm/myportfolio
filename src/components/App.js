@@ -29,16 +29,20 @@ function App() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log("window height", windowHeight)
-  // }, [windowHeight])
+  const headerStyle = windowWidth <= 768 ?
+    { fontSize: "22px", letterSpacing: "0.8px" } :
+    { fontSize: "32px", letterSpacing: "1px" };
+
+  const subHeaderStyle = windowWidth <= 768 ?
+    { fontSize: "0.40em", letterSpacing: "1.6px" } :
+    { fontSize: "0.55em", letterSpacing: "2px" };
 
   return (
     <div className="App">
 
       <div className="header">
-        <div className='font-montserrat' style={{ fontSize: "32px", borderTop: "0.5px solid white", borderBottom: "0.5px solid white" }}>
-          <span style={{ letterSpacing: "1px" }}>G_W<span style={{ fontSize: "0.55em", letterSpacing: "2px" }}>.dev</span></span>
+        <div className='font-montserrat' style={{ ...headerStyle, borderTop: "0.5px solid white", borderBottom: "0.5px solid white" }}>
+          G_W<span style={subHeaderStyle}>.dev</span>
         </div>
         <HeaderLinks windowScroll={windowScroll} aboutMeHeight={aboutMeHeight} workHeight={workHeight} />
       </div>

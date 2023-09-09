@@ -7,6 +7,7 @@ export default function WorkSingle({ left, imgSrc, title, shortDesc, description
     const [clicked, setClicked] = useState(false);
     const [open, setOpen] = useState(false);
     const [expand, setExpand] = useState(false);
+    const [isSmalScreen, setIsSmallScreen] = useState(false);
 
     useEffect(() => {
         if (clicked) {
@@ -29,11 +30,24 @@ export default function WorkSingle({ left, imgSrc, title, shortDesc, description
         return () => clearTimeout(timeout);
     }, [open]);
 
+    useEffect(() => {
+        if (windowWidth <= 768) {
+            setIsSmallScreen(true)
+        } else {
+            setIsSmallScreen(false)
+        }
+    }, [windowWidth])
+
+    const align = isSmalScreen ? {
+        alignItems: isSmalScreen ? 'center' : "",
+        justifyContent: isSmalScreen ? 'center' : "",
+    } : {}
     const styleMainBox = {
         display: "flex",
-        width: "680px",
-        gap: "70px",
-        margin: left ? "0 auto 0 15%" : "0 15% 0 auto",
+        width: isSmalScreen ? windowWidth : "680px",
+        gap: isSmalScreen ? "20px" : "70px",
+        margin: isSmalScreen ? "0 0 45px" : left ? "0 auto 0 15%" : "0 15% 0 auto",
+        flexDirection: isSmalScreen ? 'column' : 'row',
     }
 
     const styleImageBox = {
@@ -57,9 +71,6 @@ export default function WorkSingle({ left, imgSrc, title, shortDesc, description
             onClick={(e) => { setClicked(true); setMouseLocation({ x: e.clientX, y: e.clientY }) }}
             style={styleImageBox}>
             <img height="210px" alt="" width="280px" style={{ transform: `translate(${expand ? 0 : "-35px"})`, transition: "transform 0.5s" }} src={imgSrc} />
-            <div style={{ display: "flex", alignItems: 'center', justifyContent: 'center', bottom: 8, position: "absolute", width: "100%", fontSize: "1.1rem", color: "#e1e1e1" }}>
-                <img alt="" src="/magnifier.svg" />
-            </div>
         </div>
     )
 
@@ -113,12 +124,15 @@ export default function WorkSingle({ left, imgSrc, title, shortDesc, description
     )
 
     return (
-        <div style={styleMainBox}>
-            {!left && text}
-            <div style={{ width: "210px" }}>
+        <div style={{...styleMainBox, ...align}}>
+            {(isSmalScreen || !left) && text}
+            <div style={{ width: "210px", position: 'relative' }}>
                 {image}
+                <div style={{ position: "absolute", width: "100%", fontSize: "1.1rem", color: "#e1e1e1" }}>
+                    See More
+                </div>
             </div>
-            {left && text}
+            {(!isSmalScreen && left) && text}
             {open && openedBox}
         </div>
     )

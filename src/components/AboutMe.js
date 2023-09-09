@@ -44,7 +44,7 @@ export default function AboutMe({ setHeight }) {
         " \u2022 Spanish - (intermediate)",
         " ",
         "Interests:",
-        "Tech, Books, Puzzles, Music."
+        "Tech, Games, Books, Puzzles, Music."
     ]
 
 
